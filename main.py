@@ -5,12 +5,16 @@ import os
 
 app = FastAPI(title="Simple Chatbot API")
 
-# 環境変数を使わず、直接キーを指定する（確実！）
-OPENAI_API_KEY = "sk-"
+# 【改善点】APIキーはコードに直接書かず、OSの環境変数（Environment Variable）から安全に読み込む
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 
+if not OPENAI_API_KEY:
+    # キーが設定されていない場合は、エラーを発生させて開発者に知らせる
+    raise RuntimeWarning("エラー: 環境変数 'OPENAI_API_KEY' が設定されていません。")
+
+# クライアントの初期化
 client = AsyncOpenAI(api_key=OPENAI_API_KEY)
 
-# --- 以下は変更なし ---
 class ChatRequest(BaseModel):
     message: str
 
