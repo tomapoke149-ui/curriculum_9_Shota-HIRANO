@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import Form from "./Form"; // ① さっき作ったForm部品（コンポーネント）を読み込む
+import Form from "./Form";
 
 function App() {
   return (
@@ -9,8 +9,9 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
       </header>
       
-      {/* ② 読み込んだForm部品をここに配置する */}
-      <Form />
+      {/* ▼ titleという名前で、Form部品に「ユーザー登録フォーム」という文字を渡す ▼ */}
+      <Form title="ユーザー登録フォーム" />
+      
     </div>
   );
 }

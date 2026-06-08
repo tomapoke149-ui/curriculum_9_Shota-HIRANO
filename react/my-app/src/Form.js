@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-function Form() {
+// ▼ 引数として props を受け取るようにする ▼
+function Form(props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [age, setAge] = useState("");
@@ -12,6 +13,10 @@ function Form() {
 
   return (
     <form style={{ display: "flex", flexDirection: "column" }} onSubmit={handleSubmit}>
+        
+        {/* ▼ 親から渡された title を <h2> タグで画面に表示する ▼ */}
+        <h2>{props.title}</h2>
+        
         <label>Name: </label>
         <input
           type={"text"}
@@ -40,5 +45,4 @@ function Form() {
   );
 }
 
-// 他のファイルからこの部品を呼び出せるようにエクスポートする
 export default Form;
